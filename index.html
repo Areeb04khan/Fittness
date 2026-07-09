@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Daily Plan</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">DAILY PLAN</div>
+    <div class="live">
+      <span id="liveDate"></span>
+      <span id="liveTime" class="mono"></span>
+      <span id="weatherChip" class="chip">Loading weather…</span>
+    </div>
+  </header>
+
+  <div id="hydrationHint" class="hydration-hint" style="display:none;"></div>
+
+  <nav class="tabs">
+    <button class="tab-btn active" data-target="myDay">MY DAY</button>
+    <button class="tab-btn" data-target="momsKitchen">MOM'S KITCHEN</button>
+  </nav>
+
+  <!-- ================= MY DAY ================= -->
+  <main id="myDay" class="panel active">
+    <div class="round-card">
+      <div class="round-banner" id="programBanner">—</div>
+      <div class="round-focus">
+        <div class="round-label">TODAY'S FOCUS</div>
+        <div class="round-value" id="todayFocus">—</div>
+        <div class="round-sub"><span id="todayReps"></span> · <span id="todayMuscles"></span></div>
+      </div>
+    </div>
+
+    <section class="card">
+      <h2>Exercises</h2>
+      <ul id="exerciseList" class="plain-list"></ul>
+    </section>
+
+    <section class="card">
+      <h2>Medications &amp; Supplements <span class="lock">🔒 private</span></h2>
+
+      <div id="privateLoggedOut">
+        <p class="note">Log in to view your medication and supplement schedule.</p>
+        <form id="loginForm" class="login-form">
+          <input type="password" id="passwordInput" placeholder="Password" required />
+          <button type="submit">Log in</button>
+        </form>
+        <p class="error" id="loginError"></p>
+      </div>
+
+      <div id="privateLoggedIn" style="display:none;">
+        <h3>Medications</h3>
+        <ul id="medList" class="plain-list checklist"></ul>
+        <h3>Supplements</h3>
+        <ul id="supList" class="plain-list checklist"></ul>
+        <button id="logoutBtn" class="link-btn">Log out</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Water</h2>
+      <div class="water-row">
+        <span id="waterCount">0 ml today</span>
+        <button id="waterAdd">+250 ml</button>
+        <button id="waterReset" class="link-btn">Reset</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Daily Targets</h2>
+      <ul id="targetsList" class="plain-list"></ul>
+    </section>
+  </main>
+
+  <!-- ================= MOM'S KITCHEN ================= -->
+  <main id="momsKitchen" class="panel">
+    <div class="recipe-card-header">
+      <div class="recipe-label">TOMORROW'S PLAN</div>
+      <div class="recipe-date" id="tomorrowDate">—</div>
+      <button id="whatsappShare" class="wa-btn">Share on WhatsApp</button>
+    </div>
+
+    <section class="card meal-card" id="breakfastCard">
+      <h2>Breakfast</h2>
+      <div class="meal-name"></div>
+      <div class="meal-row"><strong>Ingredients:</strong> <span class="meal-ingredients"></span></div>
+      <div class="meal-row prep"><strong>Tonight:</strong> <span class="meal-prep"></span></div>
+    </section>
+
+    <section class="card meal-card" id="lunchCard">
+      <h2>Lunch</h2>
+      <div class="meal-name"></div>
+      <div class="meal-row"><strong>Ingredients:</strong> <span class="meal-ingredients"></span></div>
+      <div class="meal-row prep"><strong>Tonight:</strong> <span class="meal-prep"></span></div>
+    </section>
+
+    <section class="card meal-card" id="dinnerCard">
+      <h2>Dinner</h2>
+      <div class="meal-name"></div>
+      <div class="meal-row"><strong>Ingredients:</strong> <span class="meal-ingredients"></span></div>
+      <div class="meal-row prep"><strong>Tonight:</strong> <span class="meal-prep"></span></div>
+    </section>
+
+    <section class="card">
+      <h2>Snack Options</h2>
+      <ul id="snackList" class="plain-list"></ul>
+    </section>
+
+    <section class="card">
+      <h2>Meal Timing</h2>
+      <ul id="timingList" class="plain-list"></ul>
+    </section>
+  </main>
+
+  <!-- ================= CHAT WIDGET ================= -->
+  <button id="chatToggle" class="chat-toggle">💬</button>
+  <div id="chatPanel" class="chat-panel">
+    <div class="chat-header">Ask about the plan</div>
+    <div id="chatLog" class="chat-log"></div>
+    <form id="chatForm" class="chat-form">
+      <input type="text" id="chatInput" placeholder="Ask a question…" autocomplete="off" />
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

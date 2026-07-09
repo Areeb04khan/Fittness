@@ -1,0 +1,9 @@
+{
+  "name": "daily-plan-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Personal fitness/diet/medication schedule site with a private login-gated section and a Gemini-powered Q&A chatbot.",
+  "engines": {
+    "node": ">=18"
+  }
+}
