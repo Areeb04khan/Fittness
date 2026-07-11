@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Planner | Daily Plan Hub</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="planner">
+  <header class="topbar">
+    <div class="brand">DAILY PLAN HUB</div>
+    <div class="live">
+      <span id="liveDate"></span>
+      <span id="liveTime" class="mono"></span>
+      <span id="weatherChip" class="chip">Loading weather…</span>
+    </div>
+  </header>
+
+  <div id="hydrationHint" class="hydration-hint" style="display:none;"></div>
+
+  <nav class="page-nav">
+    <a class="nav-link" href="index.html">Home</a>
+    <a class="nav-link active" href="planner.html">Planner</a>
+    <a class="nav-link" href="kitchen.html">Kitchen</a>
+    <a class="nav-link" href="progress.html">Progress</a>
+  </nav>
+
+  <main class="shell">
+    <section class="round-card">
+      <div class="round-banner" id="programBanner">—</div>
+      <div class="round-focus">
+        <div class="round-label">TODAY'S FOCUS</div>
+        <div class="round-value" id="todayFocus">—</div>
+        <div class="round-sub"><span id="todayReps"></span> · <span id="todayMuscles"></span></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Exercises</h2>
+      <ul id="exerciseList" class="plain-list"></ul>
+    </section>
+
+    <section class="card">
+      <h2>Medications &amp; Supplements <span class="lock">🔒 private</span></h2>
+      <div id="privateLoggedOut">
+        <p class="note">Log in to view your medication and supplement schedule.</p>
+        <form id="loginForm" class="login-form">
+          <input type="password" id="passwordInput" placeholder="Password" required />
+          <button type="submit">Log in</button>
+        </form>
+        <p class="error" id="loginError"></p>
+      </div>
+      <div id="privateLoggedIn" style="display:none;">
+        <h3>Medications</h3>
+        <ul id="medList" class="plain-list checklist"></ul>
+        <h3>Supplements</h3>
+        <ul id="supList" class="plain-list checklist"></ul>
+        <button id="logoutBtn" class="link-btn">Log out</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Water</h2>
+      <div class="water-row">
+        <span id="waterCount">0 ml today</span>
+        <button id="waterAdd">+250 ml</button>
+        <button id="waterReset" class="link-btn">Reset</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Daily Targets</h2>
+      <ul id="targetsList" class="plain-list"></ul>
+    </section>
+
+    <section class="card">
+      <h2>Reminders</h2>
+      <p>Enable browser notifications so the plan can nudge you at key times.</p>
+      <button id="reminderBtn" class="pill-btn">Enable reminders</button>
+      <p id="reminderStatus" class="note"></p>
+    </section>
+
+    <section class="card">
+      <h2>Adherence</h2>
+      <div id="adherenceSummary" class="status-pill">—</div>
+      <p id="adherenceDays" class="note"></p>
+      <p id="adherenceStreak" class="note"></p>
+    </section>
+  </main>
+
+  <button id="chatToggle" class="chat-toggle">💬</button>
+  <div id="chatPanel" class="chat-panel">
+    <div class="chat-header">Ask about the plan</div>
+    <div id="chatLog" class="chat-log"></div>
+    <form id="chatForm" class="chat-form">
+      <input type="text" id="chatInput" placeholder="Ask a question…" autocomplete="off" />
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Progress | Daily Plan Hub</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="progress">
+  <header class="topbar">
+    <div class="brand">DAILY PLAN HUB</div>
+    <div class="live">
+      <span id="liveDate"></span>
+      <span id="liveTime" class="mono"></span>
+      <span id="weatherChip" class="chip">Loading weather…</span>
+    </div>
+  </header>
+
+  <div id="hydrationHint" class="hydration-hint" style="display:none;"></div>
+
+  <nav class="page-nav">
+    <a class="nav-link" href="index.html">Home</a>
+    <a class="nav-link" href="planner.html">Planner</a>
+    <a class="nav-link" href="kitchen.html">Kitchen</a>
+    <a class="nav-link active" href="progress.html">Progress</a>
+  </nav>
+
+  <main class="shell">
+    <section class="card">
+      <h2>Progress log</h2>
+      <p>Keep the basics visible: weight, waist, and a short note.</p>
+      <form id="progressForm" class="input-stack">
+        <input id="weightInput" type="number" step="0.1" placeholder="Weight (kg)" />
+        <input id="waistInput" type="number" step="0.1" placeholder="Waist (cm)" />
+        <textarea id="notesInput" placeholder="Notes"></textarea>
+        <button class="pill-btn" type="submit">Save check-in</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Latest trend</h2>
+      <div id="progressSummary" class="status-pill">—</div>
+      <p id="trendSummary" class="note"></p>
+    </section>
+
+    <section class="card">
+      <h2>Recent entries</h2>
+      <ul id="progressList" class="plain-list"></ul>
+    </section>
+  </main>
+
+  <button id="chatToggle" class="chat-toggle">💬</button>
+  <div id="chatPanel" class="chat-panel">
+    <div class="chat-header">Ask about the plan</div>
+    <div id="chatLog" class="chat-log"></div>
+    <form id="chatForm" class="chat-form">
+      <input type="text" id="chatInput" placeholder="Ask a question…" autocomplete="off" />
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

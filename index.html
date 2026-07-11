@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Daily Plan</title>
-<link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#14181c" />
+  <title>Daily Plan Hub</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-
+<body data-page="home">
   <header class="topbar">
-    <div class="brand">DAILY PLAN</div>
+    <div class="brand">DAILY PLAN HUB</div>
     <div class="live">
       <span id="liveDate"></span>
       <span id="liveTime" class="mono"></span>
@@ -19,104 +20,53 @@
 
   <div id="hydrationHint" class="hydration-hint" style="display:none;"></div>
 
-  <nav class="tabs">
-    <button class="tab-btn active" data-target="myDay">MY DAY</button>
-    <button class="tab-btn" data-target="momsKitchen">MOM'S KITCHEN</button>
+  <nav class="page-nav">
+    <a class="nav-link active" href="index.html">Home</a>
+    <a class="nav-link" href="planner.html">Planner</a>
+    <a class="nav-link" href="kitchen.html">Kitchen</a>
+    <a class="nav-link" href="progress.html">Progress</a>
   </nav>
 
-  <!-- ================= MY DAY ================= -->
-  <main id="myDay" class="panel active">
-    <div class="round-card">
-      <div class="round-banner" id="programBanner">—</div>
-      <div class="round-focus">
-        <div class="round-label">TODAY'S FOCUS</div>
-        <div class="round-value" id="todayFocus">—</div>
-        <div class="round-sub"><span id="todayReps"></span> · <span id="todayMuscles"></span></div>
+  <main class="shell">
+    <section class="hero-card">
+      <div>
+        <p class="eyebrow">A calmer daily system</p>
+        <h1>Training, meals, meds, and progress all in one place.</h1>
+        <p class="hero-copy">Use the public plan for your day, keep your private checklist secure behind a password, and keep tomorrow’s kitchen prep simple.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="planner.html">Open planner</a>
+          <a class="btn btn-secondary" href="kitchen.html">See kitchen plan</a>
+        </div>
       </div>
-    </div>
-
-    <section class="card">
-      <h2>Exercises</h2>
-      <ul id="exerciseList" class="plain-list"></ul>
-    </section>
-
-    <section class="card">
-      <h2>Medications &amp; Supplements <span class="lock">🔒 private</span></h2>
-
-      <div id="privateLoggedOut">
-        <p class="note">Log in to view your medication and supplement schedule.</p>
-        <form id="loginForm" class="login-form">
-          <input type="password" id="passwordInput" placeholder="Password" required />
-          <button type="submit">Log in</button>
-        </form>
-        <p class="error" id="loginError"></p>
-      </div>
-
-      <div id="privateLoggedIn" style="display:none;">
-        <h3>Medications</h3>
-        <ul id="medList" class="plain-list checklist"></ul>
-        <h3>Supplements</h3>
-        <ul id="supList" class="plain-list checklist"></ul>
-        <button id="logoutBtn" class="link-btn">Log out</button>
+      <div class="hero-panel">
+        <h3>Site map</h3>
+        <ul class="plain-list">
+          <li><strong>Planner</strong> — today’s exercises, private medication checklist, water + reminders.</li>
+          <li><strong>Kitchen</strong> — tomorrow’s rotation, prep notes, grocery list, WhatsApp share.</li>
+          <li><strong>Progress</strong> — weekly streak, body metric log, and simple trend notes.</li>
+        </ul>
       </div>
     </section>
 
-    <section class="card">
-      <h2>Water</h2>
-      <div class="water-row">
-        <span id="waterCount">0 ml today</span>
-        <button id="waterAdd">+250 ml</button>
-        <button id="waterReset" class="link-btn">Reset</button>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>Daily Targets</h2>
-      <ul id="targetsList" class="plain-list"></ul>
+    <section class="card-grid">
+      <article class="card feature-card">
+        <h2>Planner</h2>
+        <p>Switch between today’s training focus and your private checklist without opening separate tools.</p>
+        <a class="text-link" href="planner.html">Go to planner</a>
+      </article>
+      <article class="card feature-card">
+        <h2>Kitchen</h2>
+        <p>Rotate breakfast, lunch, and dinner automatically while keeping prep steps easy for tonight.</p>
+        <a class="text-link" href="kitchen.html">Open kitchen page</a>
+      </article>
+      <article class="card feature-card">
+        <h2>Progress</h2>
+        <p>Log waist, weight, and notes to keep your weekly rhythm visible and simple.</p>
+        <a class="text-link" href="progress.html">View progress page</a>
+      </article>
     </section>
   </main>
 
-  <!-- ================= MOM'S KITCHEN ================= -->
-  <main id="momsKitchen" class="panel">
-    <div class="recipe-card-header">
-      <div class="recipe-label">TOMORROW'S PLAN</div>
-      <div class="recipe-date" id="tomorrowDate">—</div>
-      <button id="whatsappShare" class="wa-btn">Share on WhatsApp</button>
-    </div>
-
-    <section class="card meal-card" id="breakfastCard">
-      <h2>Breakfast</h2>
-      <div class="meal-name"></div>
-      <div class="meal-row"><strong>Ingredients:</strong> <span class="meal-ingredients"></span></div>
-      <div class="meal-row prep"><strong>Tonight:</strong> <span class="meal-prep"></span></div>
-    </section>
-
-    <section class="card meal-card" id="lunchCard">
-      <h2>Lunch</h2>
-      <div class="meal-name"></div>
-      <div class="meal-row"><strong>Ingredients:</strong> <span class="meal-ingredients"></span></div>
-      <div class="meal-row prep"><strong>Tonight:</strong> <span class="meal-prep"></span></div>
-    </section>
-
-    <section class="card meal-card" id="dinnerCard">
-      <h2>Dinner</h2>
-      <div class="meal-name"></div>
-      <div class="meal-row"><strong>Ingredients:</strong> <span class="meal-ingredients"></span></div>
-      <div class="meal-row prep"><strong>Tonight:</strong> <span class="meal-prep"></span></div>
-    </section>
-
-    <section class="card">
-      <h2>Snack Options</h2>
-      <ul id="snackList" class="plain-list"></ul>
-    </section>
-
-    <section class="card">
-      <h2>Meal Timing</h2>
-      <ul id="timingList" class="plain-list"></ul>
-    </section>
-  </main>
-
-  <!-- ================= CHAT WIDGET ================= -->
   <button id="chatToggle" class="chat-toggle">💬</button>
   <div id="chatPanel" class="chat-panel">
     <div class="chat-header">Ask about the plan</div>

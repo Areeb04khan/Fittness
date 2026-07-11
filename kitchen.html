@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kitchen | Daily Plan Hub</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="kitchen">
+  <header class="topbar">
+    <div class="brand">DAILY PLAN HUB</div>
+    <div class="live">
+      <span id="liveDate"></span>
+      <span id="liveTime" class="mono"></span>
+      <span id="weatherChip" class="chip">Loading weather…</span>
+    </div>
+  </header>
+
+  <div id="hydrationHint" class="hydration-hint" style="display:none;"></div>
+
+  <nav class="page-nav">
+    <a class="nav-link" href="index.html">Home</a>
+    <a class="nav-link" href="planner.html">Planner</a>
+    <a class="nav-link active" href="kitchen.html">Kitchen</a>
+    <a class="nav-link" href="progress.html">Progress</a>
+  </nav>
+
+  <main class="shell">
+    <div class="recipe-card-header">
+      <div class="recipe-label">TOMORROW'S PLAN</div>
+      <div class="recipe-date" id="tomorrowDate">—</div>
+      <button id="whatsappShare" class="wa-btn">Share on WhatsApp</button>
+    </div>
+
+    <section class="card meal-card" id="breakfastCard">
+      <h2>Breakfast</h2>
+      <div class="meal-name"></div>
+      <div class="meal-row"><strong>Ingredients:</strong> <span class="meal-ingredients"></span></div>
+      <div class="meal-row prep"><strong>Tonight:</strong> <span class="meal-prep"></span></div>
+    </section>
+
+    <section class="card meal-card" id="lunchCard">
+      <h2>Lunch</h2>
+      <div class="meal-name"></div>
+      <div class="meal-row"><strong>Ingredients:</strong> <span class="meal-ingredients"></span></div>
+      <div class="meal-row prep"><strong>Tonight:</strong> <span class="meal-prep"></span></div>
+    </section>
+
+    <section class="card meal-card" id="dinnerCard">
+      <h2>Dinner</h2>
+      <div class="meal-name"></div>
+      <div class="meal-row"><strong>Ingredients:</strong> <span class="meal-ingredients"></span></div>
+      <div class="meal-row prep"><strong>Tonight:</strong> <span class="meal-prep"></span></div>
+    </section>
+
+    <section class="card">
+      <h2>Snack Options</h2>
+      <ul id="snackList" class="plain-list"></ul>
+    </section>
+
+    <section class="card">
+      <h2>Meal Timing</h2>
+      <ul id="timingList" class="plain-list"></ul>
+    </section>
+
+    <section class="card">
+      <h2>Quick Grocery List</h2>
+      <p id="grocerySummary" class="note"></p>
+      <ul id="groceryList" class="plain-list"></ul>
+    </section>
+  </main>
+
+  <button id="chatToggle" class="chat-toggle">💬</button>
+  <div id="chatPanel" class="chat-panel">
+    <div class="chat-header">Ask about the plan</div>
+    <div id="chatLog" class="chat-log"></div>
+    <form id="chatForm" class="chat-form">
+      <input type="text" id="chatInput" placeholder="Ask a question…" autocomplete="off" />
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
