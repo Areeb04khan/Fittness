@@ -133,7 +133,6 @@ const EXERCISES_BLOCK_B = {
 
 // ---------------- DIET ROTATION ----------------
 const BREAKFASTS = [
-<<<<<<< HEAD
   { name: "अंडा व्हाइट + सब्ज़ियों वाला ओमलेट, मल्टीग्रेन टोस्ट", type: "NV", ingredients: "4 अंडे की सफेदी + 1 पूरा अंडा, प्याज, टमाटर, हरी मिर्च, 2 मल्टीग्रेन टोस्ट", prepAhead: "सब्ज़ियों को रात में काट लें और फ्रिज में रखें।" },
   { name: "चिकन कीमा स्क्रैम्बल + टोस्ट", type: "NV", ingredients: "100g हलाल चिकन कीमा, प्याज़, टमाटर, हल्के मसाले, 2 स्लाइस टोस्ट", prepAhead: "कीमा को रात पहले पका लें और सुबह गरम करें।" },
   { name: "उबले अंडे + ओट्स पोहा", type: "NV", ingredients: "4 उबले अंडे, 50g ओट्स, पानी/दूध, दालचीनी", prepAhead: "अंडे रात में उबाल लें और फ्रिज में रखें।" },
@@ -158,125 +157,6 @@ const DINNERS = [
   { name: "एग ड्रॉप सूप + ग्रिल्ड चिकन टिक्का", type: "NV", ingredients: "2 अंडे, सब्ज़ियाँ, 150g चिकन टिक्का", prepAhead: "चिकन को रात में टिक्का मसाले में मैरीनेट करें।" },
   { name: "झींगा या फिश टिक्का + सलाद", type: "NV", ingredients: "175g झींगा/फिश, दही और हल्का मसाला, सलाद", prepAhead: "टिक्का को रात भर मैरिनेट करें।" },
   { name: "पनीर/टोफू + सॉटेड सब्ज़ियाँ + बाजरा", type: "V", ingredients: "150–200g पनीर या टोफू, मिश्रित सब्ज़ियाँ, 1/2 कप बाजरा/क्विनोआ", prepAhead: "सब्ज़ियाँ काट लें।" },
-=======
-  {
-    name: "Egg white + whole egg omelette, multigrain toast",
-    type: "NV",
-    ingredients: "4 egg whites + 1 whole egg, chopped vegetables, 2 slices multigrain bread",
-    prepAhead: "Chop vegetables the night before and refrigerate.",
-  },
-  {
-    name: "Chicken keema scramble + toast",
-    type: "NV",
-    ingredients: "100g minced chicken, onion, tomato, mild spices, 2 slices multigrain bread",
-    prepAhead: "Keema can be pre-cooked the night before and reheated.",
-  },
-  {
-    name: "Boiled eggs + oats porridge",
-    type: "NV",
-    ingredients: "4 boiled eggs, 50g oats cooked in water/milk with cinnamon",
-    prepAhead: "Boil eggs the night before, refrigerate.",
-  },
-  {
-    name: "Egg bhurji + multigrain paratha",
-    type: "NV",
-    ingredients: "3 eggs scrambled with onion/tomato/spices, 1 multigrain paratha",
-    prepAhead: "Dough for paratha can be kneaded the night before.",
-  },
-  {
-    name: "Greek yogurt + boiled eggs + fruit",
-    type: "NV",
-    ingredients: "1 cup Greek yogurt, 2 boiled eggs, 1 seasonal fruit",
-    prepAhead: "Boil eggs the night before.",
-  },
-  {
-    name: "Moong sprouts chilla + curd",
-    type: "V",
-    ingredients: "1.5 cups sprouted moong, 2 tbsp besan, spices, 1 cup curd",
-    prepAhead: "Soak and sprout moong 1–2 days in advance.",
-  },
-];
-
-const LUNCHES = [
-  {
-    name: "Grilled chicken breast + rice + salad + curd",
-    type: "NV",
-    ingredients: "175g chicken breast, 1 cup brown rice, cucumber-tomato salad, 1 cup curd",
-    prepAhead:
-      "Marinate chicken (curd, ginger-garlic, mild spices) the night before — 30+ min marination, longer is fine overnight.",
-  },
-  {
-    name: "Light fish curry + rice + sautéed greens",
-    type: "NV",
-    ingredients:
-      "175g fish fillet, onion-tomato or coconut curry base, 1 cup rice, sautéed spinach",
-    prepAhead:
-      "Curry base (onion-tomato masala) can be made ahead and refrigerated; add fish fresh.",
-  },
-  {
-    name: "Chicken keema with roti + salad",
-    type: "NV",
-    ingredients: "150g minced chicken, 2 multigrain rotis, salad",
-    prepAhead: "Keema can be cooked the night before and reheated.",
-  },
-  {
-    name: "Egg curry + roti + salad",
-    type: "NV",
-    ingredients: "3 eggs, light onion-tomato gravy, 2 rotis, salad",
-    prepAhead: "Gravy base can be made the night before; boil and add eggs fresh.",
-  },
-  {
-    name: "Grilled fish + quinoa + salad",
-    type: "NV",
-    ingredients: "175g fish fillet, 3/4 cup cooked quinoa, mixed salad",
-    prepAhead: "Marinate fish for 20–30 minutes ahead of cooking.",
-  },
-  {
-    name: "Rajma or dal + roti + salad + curd",
-    type: "V",
-    ingredients: "1.5 cups cooked rajma/dal, 2 rotis, salad, 1 cup curd",
-    prepAhead: "Soak rajma/dal overnight — this is the one that most needs prep the night before.",
-  },
-];
-
-const DINNERS = [
-  {
-    name: "Grilled chicken + sautéed vegetables + millet",
-    type: "NV",
-    ingredients: "175g chicken breast, mixed sautéed vegetables, 1/2 cup jowar/quinoa",
-    prepAhead: "Marinate chicken the night before.",
-  },
-  {
-    name: "Pan-seared fish + stir-fried vegetables",
-    type: "NV",
-    ingredients: "175g fish fillet, stir-fried mixed vegetables in minimal oil",
-    prepAhead: "Chop vegetables ahead; marinate fish 20 minutes before cooking.",
-  },
-  {
-    name: "Chicken stir-fry with vegetables",
-    type: "NV",
-    ingredients: "150g chicken strips, bell peppers, onion, garlic, light soy/tamari",
-    prepAhead: "Slice chicken and vegetables the night before, store separately in the fridge.",
-  },
-  {
-    name: "Egg-drop soup + grilled chicken skewers",
-    type: "NV",
-    ingredients: "2 eggs for soup + vegetables, 150g chicken skewers",
-    prepAhead: "Skewer and marinate chicken the night before.",
-  },
-  {
-    name: "Prawn or fish tikka + salad",
-    type: "NV",
-    ingredients: "175g prawns/fish marinated in curd and mild spices, grilled, salad",
-    prepAhead: "Marinate overnight for best flavor and less prep tomorrow.",
-  },
-  {
-    name: "Paneer/tofu + sautéed vegetables + millet",
-    type: "V",
-    ingredients: "150–200g paneer or tofu, mixed sautéed vegetables, 1/2 cup jowar/quinoa",
-    prepAhead: "Chop vegetables ahead.",
-  },
->>>>>>> 2b56686a1a1722d16017e606db26d62d75c3c14e
 ];
 
 const SNACKS = [
