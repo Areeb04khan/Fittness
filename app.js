@@ -44,6 +44,45 @@ function writeStorage(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
 }
 
+const EXERCISE_DETAILS = {
+  "Barbell Bench Press": { icon: "🏋️‍♂️", copy: "Athletes use this core chest press for upper-body strength while maintaining stable shoulder mechanics." },
+  "Barbell Row": { icon: "🚣‍♂️", copy: "A proven strength movement for back thickness and posture, especially when the spine stays neutral." },
+  "Overhead Press": { icon: "🎯", copy: "Builds shoulder stability and full-body bracing through a vertical pressing pattern." },
+  "Weighted Pull-up": { icon: "💪", copy: "A compound pull movement that improves back strength and helps athletes lift more with better shoulder control." },
+  "Lat Pulldown": { icon: "💪", copy: "A reliable upper-back exercise when pull-up volume is being timed around recovery." },
+  "Dips": { icon: "🔥", copy: "Develops chest and triceps with a strong pressing pattern that supports heavier pushing work." },
+  "Close-Grip Bench Press": { icon: "🔥", copy: "Targets triceps and lockout strength while keeping a safe bar path for the shoulders." },
+  "Back Squat": { icon: "🏋️", copy: "A foundational strength lift for lower-body power, core stability, and athletic force production." },
+  "Front Squat": { icon: "🏋️", copy: "A quad-dominant variation that improves posture and vertical force transfer for athletes." },
+  "Romanian Deadlift": { icon: "🦵", copy: "Effective posterior-chain training for hamstrings and glutes when hip hinge form is emphasized." },
+  "Leg Press": { icon: "🔧", copy: "Allows controlled leg loading with less spinal compression, useful on higher-volume lower days." },
+  "Standing Calf Raise": { icon: "🦶", copy: "Builds ankle strength and calf endurance used in sprinting and jumping mechanics." },
+  "Incline Dumbbell Press": { icon: "🏋️‍♀️", copy: "A popular upper-chest builder that improves pressing balance and shoulder health." },
+  "Seated DB Shoulder Press": { icon: "💪", copy: "A controlled shoulder movement that supports overhead strength without excessive torso lean." },
+  "Cable Fly": { icon: "🏹", copy: "Keeps tension on the chest with a safe range of motion, ideal for hypertrophy-focused sessions." },
+  "Lateral Raise": { icon: "🟦", copy: "Widely used to strengthen the side delts and improve shoulder shape with light controlled loading." },
+  "Triceps Pushdown": { icon: "↘️", copy: "A staple triceps exercise for arm size and lockout strength." },
+  "Shadow boxing": { icon: "🥊", copy: "A low-impact boxing warm-up that sharpens movement, timing, and athletic breathing." },
+  "Pad work": { icon: "🥊", copy: "High-quality interval work for conditioning, coordination, and punching power." },
+  "Footwork drills": { icon: "🦶", copy: "Essential athletic training for balance, agility, and efficient movement patterns." },
+  "Core circuit": { icon: "🧘‍♂️", copy: "A functional core finish to support spine stability and force transfer in sport training." },
+  "Chest-Supported Row": { icon: "🏋️", copy: "A muscle-focused row variation that reduces lower-back fatigue while loading the middle back." },
+  "Single-Arm DB Row": { icon: "🦾", copy: "Improves unilateral strength and helps correct common left-right imbalances." },
+  "Rear Delt Fly": { icon: "🟩", copy: "Supports shoulder health and posture by targeting the posterior delts." },
+  "Preacher Curl": { icon: "💪", copy: "A strict arm exercise that isolates the biceps and promotes focused muscle control." },
+  "Cable Curl": { icon: "🏋️‍♂️", copy: "Maintains tension on the biceps through a smooth range of motion for hypertrophy." },
+  "Sissy Squat": { icon: "🦵", copy: "A quad-focused finisher that challenges knee control and anterior leg strength." },
+  "Goblet Squat": { icon: "🏋️", copy: "A beginner-friendly squat variation that reinforces upright posture and leg drive." },
+  "Lying Leg Curl": { icon: "🦵", copy: "Isolates the hamstrings with a controlled contraction, great for balanced leg training." },
+  "Walking Lunge": { icon: "🚶‍♂️", copy: "A dynamic unilateral exercise that builds balance, mobility, and leg strength." },
+  "Glute Bridge Machine": { icon: "🍑", copy: "A posterior-chain movement focused on glute power and hip extension." },
+};
+
+function getExerciseMeta(exercise) {
+  const key = Object.keys(EXERCISE_DETAILS).find((name) => exercise.startsWith(name));
+  return EXERCISE_DETAILS[key] || { icon: "💪", copy: "Focus on clean form, controlled tempo, and steady progression for safer gains." };
+}
+
 function renderHeader() {
   const now = new Date();
   const dateEl = document.getElementById("liveDate");
@@ -147,11 +186,25 @@ function renderPlannerPage() {
   if (exEl) {
     exEl.innerHTML = "";
     if (exList.length === 0) {
-      exEl.innerHTML = "<li>Full rest day — no lifting.</li>";
+      exEl.innerHTML = "<li>Full rest day — active recovery and mobility.</li>";
     } else {
       exList.forEach((ex) => {
+        const meta = getExerciseMeta(ex);
         const li = document.createElement("li");
-        li.textContent = info.isDeload ? `${ex} · deload volume` : ex;
+        li.className = "exercise-card";
+        li.innerHTML = `
+          <div class="exercise-icon">${meta.icon}</div>
+          <div class="exercise-body">
+            <span class="exercise-title">${ex}</span>
+            <div class="exercise-copy">${meta.copy}</div>
+          </div>
+        `;
+        if (info.isDeload) {
+          const note = document.createElement("div");
+          note.className = "exercise-note";
+          note.textContent = "Deload week: use lighter weights, focus on quality movement, and preserve recovery.";
+          li.appendChild(note);
+        }
         exEl.appendChild(li);
       });
     }
