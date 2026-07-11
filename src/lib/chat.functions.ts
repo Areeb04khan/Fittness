@@ -27,12 +27,15 @@ export const chatWithAssistant = createServerFn({ method: "POST" })
     let contextBlock = data.planContext;
     if (unlocked) {
       const { PRIVATE_ITEMS } = await import("./private-data.server");
-      contextBlock += `\n\nPRIVATE MEDS & SUPPLEMENTS:\n` +
-        PRIVATE_ITEMS.map(i => `- ${i.name} ${i.dose} (${i.time})${i.notes ? ` — ${i.notes}` : ""}`).join("\n");
+      contextBlock +=
+        `\n\nPRIVATE MEDS & SUPPLEMENTS:\n` +
+        PRIVATE_ITEMS.map(
+          (i) => `- ${i.name} ${i.dose} (${i.time})${i.notes ? ` — ${i.notes}` : ""}`,
+        ).join("\n");
     }
 
-    const systemPrompt = (unlocked ? PRIVATE_SYSTEM : PUBLIC_SYSTEM) +
-      `\n\nToday's plan:\n${contextBlock}`;
+    const systemPrompt =
+      (unlocked ? PRIVATE_SYSTEM : PUBLIC_SYSTEM) + `\n\nToday's plan:\n${contextBlock}`;
 
     const res = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
@@ -42,17 +45,19 @@ export const chatWithAssistant = createServerFn({ method: "POST" })
       },
       body: JSON.stringify({
         model: "google/gemini-2.5-flash",
-        messages: [
-          { role: "system", content: systemPrompt },
-          ...data.messages,
-        ],
+        messages: [{ role: "system", content: systemPrompt }, ...data.messages],
       }),
     });
 
     if (!res.ok) {
       const text = await res.text();
-      if (res.status === 429) return { ok: false as const, error: "Rate limit reached. Try again shortly." };
-      if (res.status === 402) return { ok: false as const, error: "AI credits exhausted. Add credits in your workspace settings." };
+      if (res.status === 429)
+        return { ok: false as const, error: "Rate limit reached. Try again shortly." };
+      if (res.status === 402)
+        return {
+          ok: false as const,
+          error: "AI credits exhausted. Add credits in your workspace settings.",
+        };
       return { ok: false as const, error: `AI error (${res.status}): ${text.slice(0, 200)}` };
     }
     const json = await res.json();

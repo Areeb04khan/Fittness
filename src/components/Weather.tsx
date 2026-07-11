@@ -26,10 +26,14 @@ export function Weather() {
   useEffect(() => {
     const url = `https://api.open-meteo.com/v1/forecast?latitude=${WEATHER_LOCATION.latitude}&longitude=${WEATHER_LOCATION.longitude}&current=temperature_2m,weather_code`;
     fetch(url)
-      .then(r => r.json())
-      .then(j => {
+      .then((r) => r.json())
+      .then((j) => {
         const c = j.current;
-        setData({ temp: c.temperature_2m, code: c.weather_code, description: CODES[c.weather_code] ?? "Unknown" });
+        setData({
+          temp: c.temperature_2m,
+          code: c.weather_code,
+          description: CODES[c.weather_code] ?? "Unknown",
+        });
       })
       .catch(() => setError("Weather unavailable"));
   }, []);
@@ -44,7 +48,9 @@ export function Weather() {
       <Sun className="h-6 w-6 text-ember" />
       <div>
         <div className="text-2xl font-display leading-none">{Math.round(data.temp)}°C</div>
-        <div className="text-xs text-muted-foreground">{WEATHER_LOCATION.name} · {data.description}</div>
+        <div className="text-xs text-muted-foreground">
+          {WEATHER_LOCATION.name} · {data.description}
+        </div>
       </div>
       {isHot && (
         <div className="ml-auto flex items-center gap-1.5 rounded-full bg-ember/20 border border-ember/40 px-3 py-1.5 text-xs text-ember">

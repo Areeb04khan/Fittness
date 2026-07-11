@@ -29,19 +29,33 @@ export function WaterTracker() {
           <Droplet className="h-5 w-5 text-ember-glow" />
           <h3 className="font-display text-xl">Water</h3>
         </div>
-        <button onClick={() => save(0)} className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1">
+        <button
+          onClick={() => save(0)}
+          className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1"
+        >
           <RotateCcw className="h-3 w-3" /> Reset
         </button>
       </div>
-      <div className="text-3xl font-display mb-1">{ml} <span className="text-base text-muted-foreground">/ {HYDRATION_TARGET_ML} ml</span></div>
+      <div className="text-3xl font-display mb-1">
+        {ml} <span className="text-base text-muted-foreground">/ {HYDRATION_TARGET_ML} ml</span>
+      </div>
       <div className="h-2 rounded-full bg-muted overflow-hidden mb-4">
-        <div className="h-full bg-gradient-to-r from-ember to-ember-glow transition-all" style={{ width: `${pct}%` }} />
+        <div
+          className="h-full bg-gradient-to-r from-ember to-ember-glow transition-all"
+          style={{ width: `${pct}%` }}
+        />
       </div>
       <div className="flex gap-2">
-        <button onClick={() => save(ml - CUP_ML)} className="flex-1 rounded-md border border-border bg-secondary py-2 flex items-center justify-center gap-1 hover:bg-accent">
+        <button
+          onClick={() => save(ml - CUP_ML)}
+          className="flex-1 rounded-md border border-border bg-secondary py-2 flex items-center justify-center gap-1 hover:bg-accent"
+        >
           <Minus className="h-4 w-4" /> Cup
         </button>
-        <button onClick={() => save(ml + CUP_ML)} className="flex-1 rounded-md bg-primary text-primary-foreground py-2 flex items-center justify-center gap-1 hover:bg-primary/90">
+        <button
+          onClick={() => save(ml + CUP_ML)}
+          className="flex-1 rounded-md bg-primary text-primary-foreground py-2 flex items-center justify-center gap-1 hover:bg-primary/90"
+        >
           <Plus className="h-4 w-4" /> Cup (250ml)
         </button>
       </div>

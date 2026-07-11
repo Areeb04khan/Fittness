@@ -3,7 +3,13 @@ import { Weather } from "@/components/Weather";
 import { WaterTracker } from "@/components/WaterTracker";
 import { PrivateChecklist } from "@/components/PrivateChecklist";
 import { ChatWidget } from "@/components/ChatWidget";
-import { getTrainingDay, getWeekNumber, todayLocal, formatLongDate, getMealsForDate } from "@/lib/plan";
+import {
+  getTrainingDay,
+  getWeekNumber,
+  todayLocal,
+  formatLongDate,
+  getMealsForDate,
+} from "@/lib/plan";
 import { NUTRITION_TARGETS } from "@/lib/plan-data";
 import { Dumbbell, ChefHat } from "lucide-react";
 
@@ -13,7 +19,10 @@ export const Route = createFileRoute("/")({
       { title: "My Day — Daily Plan" },
       { name: "description", content: "Today's training focus, hydration, and daily checklist." },
       { property: "og:title", content: "My Day — Daily Plan" },
-      { property: "og:description", content: "Today's training focus, hydration, and daily checklist." },
+      {
+        property: "og:description",
+        content: "Today's training focus, hydration, and daily checklist.",
+      },
     ],
   }),
   component: MyDay,
@@ -27,7 +36,7 @@ function MyDay() {
 
   const planContext = `Date: ${formatLongDate(today)} (Week ${week})
 Training focus: ${plan.focus}
-Exercises: ${plan.exercises.map(e => `${e.name} ${e.sets}`).join("; ")}
+Exercises: ${plan.exercises.map((e) => `${e.name} ${e.sets}`).join("; ")}
 Meals today: breakfast=${meals.breakfast}; lunch=${meals.lunch}; dinner=${meals.dinner.name}
 Nutrition targets: ${NUTRITION_TARGETS.calories} kcal, ${NUTRITION_TARGETS.protein_g}g protein.`;
 
@@ -36,7 +45,9 @@ Nutrition targets: ${NUTRITION_TARGETS.calories} kcal, ${NUTRITION_TARGETS.prote
       <Header />
       <main className="mx-auto max-w-5xl px-4 py-8 space-y-8">
         <section>
-          <div className="text-xs uppercase tracking-[0.2em] text-ember mb-1">Week {week} · {formatLongDate(today)}</div>
+          <div className="text-xs uppercase tracking-[0.2em] text-ember mb-1">
+            Week {week} · {formatLongDate(today)}
+          </div>
           <h1 className="text-5xl md:text-6xl font-display">My Day</h1>
         </section>
 
@@ -51,13 +62,15 @@ Nutrition targets: ${NUTRITION_TARGETS.calories} kcal, ${NUTRITION_TARGETS.prote
           </div>
           <div className="text-lg mb-4 text-foreground/90">{plan.focus}</div>
           <ul className="divide-y divide-border">
-            {plan.exercises.map(ex => (
+            {plan.exercises.map((ex) => (
               <li key={ex.name} className="py-3 flex items-baseline justify-between gap-4">
                 <div>
                   <div className="font-medium">{ex.name}</div>
                   {ex.notes && <div className="text-xs text-muted-foreground">{ex.notes}</div>}
                 </div>
-                <div className="font-display text-lg text-ember-glow whitespace-nowrap">{ex.sets}</div>
+                <div className="font-display text-lg text-ember-glow whitespace-nowrap">
+                  {ex.sets}
+                </div>
               </li>
             ))}
           </ul>
@@ -74,12 +87,19 @@ Nutrition targets: ${NUTRITION_TARGETS.calories} kcal, ${NUTRITION_TARGETS.prote
             <h2 className="font-display text-2xl">Eating today</h2>
           </div>
           <ul className="text-sm space-y-2">
-            <li><span className="text-muted-foreground">Breakfast:</span> {meals.breakfast}</li>
-            <li><span className="text-muted-foreground">Lunch:</span> {meals.lunch}</li>
-            <li><span className="text-muted-foreground">Dinner:</span> {meals.dinner.name}</li>
+            <li>
+              <span className="text-muted-foreground">Breakfast:</span> {meals.breakfast}
+            </li>
+            <li>
+              <span className="text-muted-foreground">Lunch:</span> {meals.lunch}
+            </li>
+            <li>
+              <span className="text-muted-foreground">Dinner:</span> {meals.dinner.name}
+            </li>
           </ul>
           <div className="mt-4 text-xs text-muted-foreground">
-            Targets: {NUTRITION_TARGETS.calories} kcal · {NUTRITION_TARGETS.protein_g}g P · {NUTRITION_TARGETS.carbs_g}g C · {NUTRITION_TARGETS.fat_g}g F
+            Targets: {NUTRITION_TARGETS.calories} kcal · {NUTRITION_TARGETS.protein_g}g P ·{" "}
+            {NUTRITION_TARGETS.carbs_g}g C · {NUTRITION_TARGETS.fat_g}g F
           </div>
         </section>
       </main>
@@ -96,10 +116,19 @@ function Header() {
           DAILY <span className="text-ember">·</span> PLAN
         </Link>
         <div className="flex items-center gap-1 text-sm">
-          <Link to="/" className="px-3 py-1.5 rounded-md hover:bg-secondary" activeProps={{ className: "px-3 py-1.5 rounded-md bg-secondary text-ember" }} activeOptions={{ exact: true }}>
+          <Link
+            to="/"
+            className="px-3 py-1.5 rounded-md hover:bg-secondary"
+            activeProps={{ className: "px-3 py-1.5 rounded-md bg-secondary text-ember" }}
+            activeOptions={{ exact: true }}
+          >
             My Day
           </Link>
-          <Link to="/kitchen" className="px-3 py-1.5 rounded-md hover:bg-secondary" activeProps={{ className: "px-3 py-1.5 rounded-md bg-secondary text-ember" }}>
+          <Link
+            to="/kitchen"
+            className="px-3 py-1.5 rounded-md hover:bg-secondary"
+            activeProps={{ className: "px-3 py-1.5 rounded-md bg-secondary text-ember" }}
+          >
             Mom's Kitchen
           </Link>
         </div>

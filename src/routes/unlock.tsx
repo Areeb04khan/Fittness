@@ -6,10 +6,7 @@ import { Lock, ArrowLeft } from "lucide-react";
 
 export const Route = createFileRoute("/unlock")({
   head: () => ({
-    meta: [
-      { title: "Unlock — Daily Plan" },
-      { name: "robots", content: "noindex" },
-    ],
+    meta: [{ title: "Unlock — Daily Plan" }, { name: "robots", content: "noindex" }],
   }),
   component: Unlock,
 });
@@ -38,7 +35,10 @@ function Unlock() {
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
       <div className="w-full max-w-sm">
-        <Link to="/" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-6">
+        <Link
+          to="/"
+          className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-6"
+        >
           <ArrowLeft className="h-3 w-3" /> Back
         </Link>
         <div className="rounded-2xl border border-border bg-card p-8">
@@ -46,7 +46,9 @@ function Unlock() {
             <Lock className="h-5 w-5 text-ember" />
           </div>
           <h1 className="font-display text-3xl mb-1">Unlock private section</h1>
-          <p className="text-sm text-muted-foreground mb-6">Enter your password to view your meds & supplements checklist.</p>
+          <p className="text-sm text-muted-foreground mb-6">
+            Enter your password to view your meds & supplements checklist.
+          </p>
           <form onSubmit={submit} className="space-y-3">
             <input
               type="password"

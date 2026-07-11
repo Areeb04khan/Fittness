@@ -63,9 +63,15 @@ export function ChatWidget({ planContext }: { planContext: string }) {
       <div ref={scrollRef} className="flex-1 overflow-y-auto p-3 space-y-3">
         {messages.map((m, i) => (
           <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
-            <div className={`max-w-[85%] rounded-2xl px-3 py-2 text-sm whitespace-pre-wrap ${
-              m.role === "user" ? "bg-primary text-primary-foreground" : "bg-secondary text-secondary-foreground"
-            }`}>{m.content}</div>
+            <div
+              className={`max-w-[85%] rounded-2xl px-3 py-2 text-sm whitespace-pre-wrap ${
+                m.role === "user"
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-secondary text-secondary-foreground"
+              }`}
+            >
+              {m.content}
+            </div>
           </div>
         ))}
         {loading && (
@@ -77,7 +83,10 @@ export function ChatWidget({ planContext }: { planContext: string }) {
         )}
       </div>
       <form
-        onSubmit={(e) => { e.preventDefault(); submit(); }}
+        onSubmit={(e) => {
+          e.preventDefault();
+          submit();
+        }}
         className="flex items-center gap-2 border-t border-border p-3"
       >
         <input

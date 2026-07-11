@@ -6,9 +6,17 @@ export const Route = createFileRoute("/kitchen")({
   head: () => ({
     meta: [
       { title: "Mom's Kitchen — Tomorrow's Menu" },
-      { name: "description", content: "Tomorrow's breakfast, lunch, and dinner with ingredients and what to prep tonight." },
+      {
+        name: "description",
+        content:
+          "Tomorrow's breakfast, lunch, and dinner with ingredients and what to prep tonight.",
+      },
       { property: "og:title", content: "Mom's Kitchen — Tomorrow's Menu" },
-      { property: "og:description", content: "Tomorrow's breakfast, lunch, and dinner with ingredients and what to prep tonight." },
+      {
+        property: "og:description",
+        content:
+          "Tomorrow's breakfast, lunch, and dinner with ingredients and what to prep tonight.",
+      },
     ],
   }),
   component: Kitchen,
@@ -27,7 +35,9 @@ function Kitchen() {
       <Header />
       <main className="mx-auto max-w-3xl px-4 py-8 space-y-8">
         <section>
-          <div className="text-xs uppercase tracking-[0.2em] text-ember mb-1">Tomorrow · {dateLabel}</div>
+          <div className="text-xs uppercase tracking-[0.2em] text-ember mb-1">
+            Tomorrow · {dateLabel}
+          </div>
           <h1 className="text-5xl md:text-6xl font-display">Mom's Kitchen</h1>
         </section>
 
@@ -51,22 +61,28 @@ function Kitchen() {
           </div>
 
           <div className="mb-5">
-            <h3 className="text-xs uppercase tracking-wider text-muted-foreground mb-2">Ingredients</h3>
+            <h3 className="text-xs uppercase tracking-wider text-muted-foreground mb-2">
+              Ingredients
+            </h3>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-sm">
-              {meals.dinner.ingredients.map(i => (
+              {meals.dinner.ingredients.map((i) => (
                 <li key={i} className="flex items-start gap-2">
-                  <span className="text-ember mt-1">•</span>{i}
+                  <span className="text-ember mt-1">•</span>
+                  {i}
                 </li>
               ))}
             </ul>
           </div>
 
           <div className="mb-5">
-            <h3 className="text-xs uppercase tracking-wider text-muted-foreground mb-2">Prep tonight</h3>
+            <h3 className="text-xs uppercase tracking-wider text-muted-foreground mb-2">
+              Prep tonight
+            </h3>
             <ul className="space-y-1.5 text-sm">
-              {meals.dinner.prepTonight.map(p => (
+              {meals.dinner.prepTonight.map((p) => (
                 <li key={p} className="flex items-start gap-2">
-                  <span className="text-ember mt-1">→</span>{p}
+                  <span className="text-ember mt-1">→</span>
+                  {p}
                 </li>
               ))}
             </ul>
@@ -85,7 +101,10 @@ function Kitchen() {
 function MealCard({ icon, label, title }: { icon: React.ReactNode; label: string; title: string }) {
   return (
     <section className="rounded-xl border border-border bg-card p-5">
-      <div className="flex items-center gap-2 text-ember mb-1">{icon}<span className="text-xs uppercase tracking-wider">{label}</span></div>
+      <div className="flex items-center gap-2 text-ember mb-1">
+        {icon}
+        <span className="text-xs uppercase tracking-wider">{label}</span>
+      </div>
       <div className="font-display text-2xl">{title}</div>
     </section>
   );
@@ -99,10 +118,10 @@ function buildShareText(dateLabel: string, meals: ReturnType<typeof getMealsForD
 🌙 Dinner: ${meals.dinner.name}
 
 Ingredients for dinner:
-${meals.dinner.ingredients.map(i => `• ${i}`).join("\n")}
+${meals.dinner.ingredients.map((i) => `• ${i}`).join("\n")}
 
 Prep tonight:
-${meals.dinner.prepTonight.map(p => `→ ${p}`).join("\n")}`;
+${meals.dinner.prepTonight.map((p) => `→ ${p}`).join("\n")}`;
 }
 
 function Header() {
@@ -113,10 +132,19 @@ function Header() {
           DAILY <span className="text-ember">·</span> PLAN
         </Link>
         <div className="flex items-center gap-1 text-sm">
-          <Link to="/" className="px-3 py-1.5 rounded-md hover:bg-secondary" activeProps={{ className: "px-3 py-1.5 rounded-md bg-secondary text-ember" }} activeOptions={{ exact: true }}>
+          <Link
+            to="/"
+            className="px-3 py-1.5 rounded-md hover:bg-secondary"
+            activeProps={{ className: "px-3 py-1.5 rounded-md bg-secondary text-ember" }}
+            activeOptions={{ exact: true }}
+          >
             My Day
           </Link>
-          <Link to="/kitchen" className="px-3 py-1.5 rounded-md hover:bg-secondary" activeProps={{ className: "px-3 py-1.5 rounded-md bg-secondary text-ember" }}>
+          <Link
+            to="/kitchen"
+            className="px-3 py-1.5 rounded-md hover:bg-secondary"
+            activeProps={{ className: "px-3 py-1.5 rounded-md bg-secondary text-ember" }}
+          >
             Mom's Kitchen
           </Link>
         </div>
