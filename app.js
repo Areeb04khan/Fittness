@@ -37,7 +37,11 @@ function todayKey(prefix) {
 }
 
 function readStorage(key) {
-  try { return JSON.parse(localStorage.getItem(key) || "{}"); } catch { return {}; }
+  try {
+    return JSON.parse(localStorage.getItem(key) || "{}");
+  } catch {
+    return {};
+  }
 }
 
 function writeStorage(key, value) {
@@ -87,17 +91,39 @@ function renderHeader() {
   const now = new Date();
   const dateEl = document.getElementById("liveDate");
   const timeEl = document.getElementById("liveTime");
-  if (dateEl) dateEl.textContent = now.toLocaleDateString(undefined, { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+  if (dateEl)
+    dateEl.textContent = now.toLocaleDateString(undefined, {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
   if (timeEl) timeEl.textContent = now.toLocaleTimeString();
 }
 
 function weatherCodeToText(code) {
   const map = {
-    0: "Clear sky", 1: "Mainly clear", 2: "Partly cloudy", 3: "Overcast",
-    45: "Fog", 48: "Fog", 51: "Light drizzle", 53: "Drizzle", 55: "Heavy drizzle",
-    61: "Light rain", 63: "Rain", 65: "Heavy rain", 71: "Light snow", 73: "Snow",
-    75: "Heavy snow", 80: "Rain showers", 81: "Rain showers", 82: "Violent showers",
-    95: "Thunderstorm", 96: "Thunderstorm w/ hail", 99: "Thunderstorm w/ hail",
+    0: "Clear sky",
+    1: "Mainly clear",
+    2: "Partly cloudy",
+    3: "Overcast",
+    45: "Fog",
+    48: "Fog",
+    51: "Light drizzle",
+    53: "Drizzle",
+    55: "Heavy drizzle",
+    61: "Light rain",
+    63: "Rain",
+    65: "Heavy rain",
+    71: "Light snow",
+    73: "Snow",
+    75: "Heavy snow",
+    80: "Rain showers",
+    81: "Rain showers",
+    82: "Violent showers",
+    95: "Thunderstorm",
+    96: "Thunderstorm w/ hail",
+    99: "Thunderstorm w/ hail",
   };
   return map[code] || "—";
 }
@@ -109,28 +135,33 @@ async function loadWeather() {
     el.textContent = "Weather unavailable";
     return;
   }
-  navigator.geolocation.getCurrentPosition(async (pos) => {
-    try {
-      const { latitude, longitude } = pos.coords;
-      const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,weather_code`);
-      const json = await res.json();
-      const c = json.current;
-      el.textContent = `${Math.round(c.temperature_2m)}°C · ${weatherCodeToText(c.weather_code)} · ${c.relative_humidity_2m}% humidity`;
-      const hint = document.getElementById("hydrationHint");
-      if (hint) {
-        if (c.temperature_2m >= 30) {
-          hint.style.display = "block";
-          hint.textContent = `It's ${Math.round(c.temperature_2m)}°C — aim for the top end of 4–4.5L water today and keep electrolytes close on training days.`;
-        } else {
-          hint.style.display = "none";
+  navigator.geolocation.getCurrentPosition(
+    async (pos) => {
+      try {
+        const { latitude, longitude } = pos.coords;
+        const res = await fetch(
+          `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,weather_code`,
+        );
+        const json = await res.json();
+        const c = json.current;
+        el.textContent = `${Math.round(c.temperature_2m)}°C · ${weatherCodeToText(c.weather_code)} · ${c.relative_humidity_2m}% humidity`;
+        const hint = document.getElementById("hydrationHint");
+        if (hint) {
+          if (c.temperature_2m >= 30) {
+            hint.style.display = "block";
+            hint.textContent = `It's ${Math.round(c.temperature_2m)}°C — aim for the top end of 4–4.5L water today and keep electrolytes close on training days.`;
+          } else {
+            hint.style.display = "none";
+          }
         }
+      } catch (e) {
+        el.textContent = "Weather unavailable";
       }
-    } catch (e) {
-      el.textContent = "Weather unavailable";
-    }
-  }, () => {
-    el.textContent = "Enable location to see local weather";
-  });
+    },
+    () => {
+      el.textContent = "Enable location to see local weather";
+    },
+  );
 }
 
 function updateAdherenceSummary() {
@@ -181,7 +212,8 @@ function renderPlannerPage() {
   if (repsEl) repsEl.textContent = split.reps;
   if (musclesEl) musclesEl.textContent = split.muscles;
 
-  const exList = (info.started && info.block === "B" ? EXERCISES_BLOCK_B : EXERCISES_BLOCK_A)[weekday] || [];
+  const exList =
+    (info.started && info.block === "B" ? EXERCISES_BLOCK_B : EXERCISES_BLOCK_A)[weekday] || [];
   const exEl = document.getElementById("exerciseList");
   if (exEl) {
     exEl.innerHTML = "";
@@ -353,7 +385,9 @@ function setupReminderControls() {
     }
     const permission = await Notification.requestPermission();
     if (permission === "granted") {
-      new Notification("Plan reminders enabled", { body: "You’ll get nudges for training, meals, and hydration." });
+      new Notification("Plan reminders enabled", {
+        body: "You’ll get nudges for training, meals, and hydration.",
+      });
       status.textContent = "Reminders enabled.";
     } else {
       status.textContent = "Notifications were not enabled.";
@@ -370,7 +404,12 @@ function renderKitchenPage() {
   const d = DINNERS[idx];
 
   const dateEl = document.getElementById("tomorrowDate");
-  if (dateEl) dateEl.textContent = tomorrow.toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric" });
+  if (dateEl)
+    dateEl.textContent = tomorrow.toLocaleDateString(undefined, {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+    });
 
   fillMealCard("breakfastCard", b);
   fillMealCard("lunchCard", l);
@@ -399,7 +438,8 @@ function renderKitchenPage() {
   const shareBtn = document.getElementById("whatsappShare");
   if (shareBtn) {
     shareBtn.onclick = () => {
-      const msg = `Tomorrow (${document.getElementById("tomorrowDate").textContent}) meal plan:\n\n` +
+      const msg =
+        `Tomorrow (${document.getElementById("tomorrowDate").textContent}) meal plan:\n\n` +
         `BREAKFAST: ${b.name}\nIngredients: ${b.ingredients}\nTonight: ${b.prepAhead}\n\n` +
         `LUNCH: ${l.name}\nIngredients: ${l.ingredients}\nTonight: ${l.prepAhead}\n\n` +
         `DINNER: ${d.name}\nIngredients: ${d.ingredients}\nTonight: ${d.prepAhead}`;
@@ -417,7 +457,8 @@ function renderKitchenPage() {
       li.textContent = item;
       groceryListEl.appendChild(li);
     });
-    if (grocerySummaryEl) grocerySummaryEl.textContent = `${items.length} items for tomorrow's prep`;
+    if (grocerySummaryEl)
+      grocerySummaryEl.textContent = `${items.length} items for tomorrow's prep`;
   }
 }
 
@@ -478,8 +519,10 @@ function renderProgressEntries(entries, listEl, summaryEl) {
 
   const latest = entries[0];
   const prev = entries[1];
-  const weightDelta = prev && latest.weight ? (Number(latest.weight) - Number(prev.weight)).toFixed(1) : "—";
-  const waistDelta = prev && latest.waist ? (Number(latest.waist) - Number(prev.waist)).toFixed(1) : "—";
+  const weightDelta =
+    prev && latest.weight ? (Number(latest.weight) - Number(prev.weight)).toFixed(1) : "—";
+  const waistDelta =
+    prev && latest.waist ? (Number(latest.waist) - Number(prev.waist)).toFixed(1) : "—";
   summaryEl.textContent = `Latest check-in: ${latest.weight || "n/a"} kg · ${latest.waist || "n/a"} cm · ${latest.notes || "No notes"}`;
 
   entries.forEach((entry) => {
@@ -489,7 +532,8 @@ function renderProgressEntries(entries, listEl, summaryEl) {
   });
 
   const trendEl = document.getElementById("trendSummary");
-  if (trendEl) trendEl.textContent = `Weight change vs last entry: ${weightDelta} kg · Waist change: ${waistDelta} cm`;
+  if (trendEl)
+    trendEl.textContent = `Weight change vs last entry: ${weightDelta} kg · Waist change: ${waistDelta} cm`;
 }
 
 function wireChat() {
