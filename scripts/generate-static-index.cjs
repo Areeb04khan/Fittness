@@ -1,7 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 
-const publicDir = path.join(process.cwd(), '.output', 'public');
+const cloudflarePublicDir = path.join(process.cwd(), '.output', 'public');
+const vercelPublicDir = path.join(process.cwd(), '.vercel', 'output', 'static');
+const publicDir = fs.existsSync(vercelPublicDir) ? vercelPublicDir : cloudflarePublicDir;
 const assetsDir = path.join(publicDir, 'assets');
 
 if (!fs.existsSync(publicDir)) {
