@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="160" viewBox="0 0 240 160">
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1">
+      <stop offset="0" stop-color="#f8e8d0" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#ffd59a" stop-opacity="0.8"/>
+    </linearGradient>
+    <filter id="blur" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+  </defs>
+  <rect rx="18" ry="18" width="100%" height="100%" fill="url(#g1)" opacity="0.95"/>
+  <g transform="translate(20,24)">
+    <rect width="80" height="80" rx="12" fill="#ffffff" opacity="0.18" style="backdrop-filter: blur(8px);"/>
+    <path d="M20 30 L50 30 L60 60 L40 70 L20 30 Z" fill="#ff7a18" opacity="0.9"/>
+    <circle cx="140" cy="40" r="28" fill="#fff" opacity="0.12"/>
+    <g transform="translate(120,24)" fill="#ff8f3d">
+      <rect x="0" y="0" width="8" height="36" rx="4"/>
+      <rect x="16" y="0" width="8" height="36" rx="4"/>
+      <rect x="32" y="0" width="8" height="36" rx="4"/>
+    </g>
+  </g>
+  <text x="20" y="140" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#3b5166">Sample Exercise</text>
+</svg>
