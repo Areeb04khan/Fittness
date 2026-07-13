@@ -48,7 +48,10 @@ Nutrition targets: ${NUTRITION_TARGETS.calories} kcal, ${NUTRITION_TARGETS.prote
           <div className="text-xs uppercase tracking-[0.2em] text-ember mb-1">
             Week {week} · {formatLongDate(today)}
           </div>
-          <h1 className="text-5xl md:text-6xl font-display">My Day</h1>
+          <div className="graphic-hero">
+            <h1 className="text-5xl md:text-6xl font-display">My Day</h1>
+            <img src="/assets/graphics/sample-exercise.svg" alt="Exercise graphic" />
+          </div>
         </section>
 
         <div className="rounded-xl border border-border bg-card p-5">
