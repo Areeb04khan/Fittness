@@ -1,7 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 
-const publicDir = path.join(process.cwd(), '.output', 'public');
+const cloudflarePublicDir = path.join(process.cwd(), '.output', 'public');
+const vercelPublicDir = path.join(process.cwd(), '.vercel', 'output', 'static');
+const publicDir = fs.existsSync(vercelPublicDir) ? vercelPublicDir : cloudflarePublicDir;
 const assetsDir = path.join(publicDir, 'assets');
 
 if (!fs.existsSync(publicDir)) {
@@ -13,7 +15,10 @@ let jsFile = '';
 let cssFile = '';
 try {
   const files = fs.readdirSync(assetsDir);
-  jsFile = files.find((f) => f.endsWith('.js')) || '';
+  // Vite emits several JavaScript chunks. The application entry is the
+  // `index-*.js` chunk; loading the first chunk can select a shared helper
+  // (such as Lucide) and leave the page unmounted.
+  jsFile = files.find((f) => /^index-[\w-]+\.js$/.test(f)) || '';
   cssFile = files.find((f) => f.endsWith('.css')) || '';
 } catch (e) {
   console.error('Could not read assets directory', e);
